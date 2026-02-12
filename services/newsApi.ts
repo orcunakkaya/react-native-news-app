@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { NewsApiResponse } from "../types/news";
+import { NewsApiResponse, PublisherResponse } from "../types/news";
 const API_KEY = process.env.EXPO_PUBLIC_NEWS_API_KEY;
 const BASE_URL = 'https://newsapi.org/v2';
 
@@ -56,5 +56,21 @@ export const searchNews = async (query: string) => {
     }catch(error: any){
         console.error('API Error:', error.response?.data || error.message);
         throw new Error('Arama sırasında hata oluştu');
+    }
+}
+
+export const fetchPublisher = async (country: string = 'us') => {
+    try{
+        const response: { data: PublisherResponse } = await newsApi.get('/top-headlines/sources', {
+        params: {
+            country,
+            language: 'en',
+        }
+    })
+    console.log('Publisher API Response:', response); // API yanıtını kontrol et
+    return response.data.sources
+    }catch(error: any){
+        console.error('API Error:', error.response?.data || error.message);
+        throw new Error('Yayıncı bilgileri yüklenirken hata oluştu');
     }
 }

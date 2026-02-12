@@ -17,3 +17,18 @@ export interface NewsApiResponse {
   totalResults: number;
   articles: Article[];
 }
+
+export interface Publisher {
+  id: string;
+  name: string;
+  description: string;
+  url: string;
+  category: string;
+  language: string;
+  country: string;
+}
+
+export interface PublisherResponse {
+  status: string;
+  sources: Publisher[];
+}
