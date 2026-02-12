@@ -26,6 +26,7 @@ if (!data || data.length === 0) {
       </View>
     );
   }
+  
   return (
     <View>
         <FlatList
