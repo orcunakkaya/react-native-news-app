@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { fetchNewsByCategory, fetchTopHeadLines, searchNews } from "../services/newsApi";
 
-export const useTopHeadlines = (country = 'us') => {
+export const useTopHeadlines = (country: string = 'us') => {
     return useQuery({
         queryKey: ['news', 'top-headlines', country],
         queryFn: () => fetchTopHeadLines(country),
@@ -9,7 +9,7 @@ export const useTopHeadlines = (country = 'us') => {
     })
 }
 
-export const useNewsByCategory = (category) => {
+export const useNewsByCategory = (category: string) => {
     return useQuery({
         queryKey: ['news', 'category', category],
         queryFn: () => fetchNewsByCategory(category),
@@ -17,7 +17,7 @@ export const useNewsByCategory = (category) => {
     })
 }
 
-export const useSearchNews = (query) => {
+export const useSearchNews = (query: string) => {
     return useQuery({
         queryKey: ['news', 'search', query],
         queryFn: () => searchNews(query),
