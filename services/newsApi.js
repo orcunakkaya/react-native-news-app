@@ -19,7 +19,7 @@ export const fetchTopHeadLines = async (country = 'us') => {
                 pageSize: 20
             }
         })
-        return response
+        return response.data.articles
     }catch(error){
         console.error('API Error:', error.response?.data || error.message);
         throw new Error('Haberler yüklenirken hata oluştu');
@@ -36,7 +36,7 @@ export const fetchNewsByCategory = async (category) => {
                 pageSize: 20
             }
         })
-        return response
+        return response.data.articles
     }catch(error){
         console.error('API Error:', error.response?.data || error.message);
         throw new Error('Kategori haberleri yüklenirken hata oluştu');
@@ -52,7 +52,7 @@ export const searchNews = async (query) => {
             language: 'en',
         }
     })
-    return response
+    return response.data.articles
     }catch(error){
         console.error('API Error:', error.response?.data || error.message);
         throw new Error('Arama sırasında hata oluştu');
