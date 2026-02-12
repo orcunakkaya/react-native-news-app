@@ -10,31 +10,15 @@ import {
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { Article } from '../../types/news';
+import { formatDate } from '@/utils/date';
 
 export default function ArticleDetailScreen() {
   const router = useRouter();
   const params = useLocalSearchParams();
   const insets = useSafeAreaInsets();
 
-  // URL'den gelen article data'sını parse et
-  const article = JSON.parse(params.article);
-
-  // Resim yoksa placeholder
-  const imageUrl =
-    article.urlToImage ||
-    'https://via.placeholder.com/400x300/e5e7eb/9ca3af?text=No+Image';
-
-  // Tarih formatla
-  const formatDate = (dateString) => {
-    const date = new Date(dateString);
-    return date.toLocaleDateString('tr-TR', {
-      day: 'numeric',
-      month: 'long',
-      year: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit',
-    });
-  };
+  const article: Article = JSON.parse(params.article as string);
 
   // Haberi tarayıcıda aç
   const openInBrowser = () => {
@@ -80,7 +64,7 @@ export default function ArticleDetailScreen() {
       <ScrollView showsVerticalScrollIndicator={false}>
         {/* Ana Resim */}
         <Image
-          source={{ uri: imageUrl }}
+          source={{ uri: article.urlToImage }}
           className="w-full h-80"
           resizeMode="cover"
         />

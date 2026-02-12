@@ -7,7 +7,7 @@ import ArticleCard from '../../components/ArticleCard';
 const Index = () => {
   const { data, isLoading, isError, error, refetch } = useTopHeadlines('us');
   const router = useRouter();
-  const [refreshing, setRefreshing] = useState(false);
+  const [refreshing, setRefreshing] = useState<boolean>(false);
 
   const onRefresh = async () => {
     setRefreshing(true);

@@ -1,5 +1,5 @@
 import axios from 'axios';
-
+import { NewsApiResponse } from "../types/news";
 const API_KEY = process.env.EXPO_PUBLIC_NEWS_API_KEY;
 const BASE_URL = 'https://newsapi.org/v2';
 
@@ -11,25 +11,25 @@ const newsApi = axios.create({
 })
 
 // ana sayfa haberleri
-export const fetchTopHeadLines = async (country = 'us') => {
+export const fetchTopHeadLines = async (country: string = 'us') => {
     try{
-        const response = await newsApi.get('/top-headlines', {
+        const response: { data: NewsApiResponse } = await newsApi.get('/top-headlines', {
             params: {
                 country,
                 pageSize: 20
             }
         })
         return response.data.articles
-    }catch(error){
+    }catch(error: any){
         console.error('API Error:', error.response?.data || error.message);
         throw new Error('Haberler yüklenirken hata oluştu');
     }
 }
 
 // kategoriye göre haberler
-export const fetchNewsByCategory = async (category) => {
+export const fetchNewsByCategory = async (category: string) => {
     try{
-        const response = await newsApi.get('/top-headlines', {
+        const response: { data: NewsApiResponse } = await newsApi.get('/top-headlines', {
             params:{
                 category,
                 country: 'us',
@@ -37,15 +37,15 @@ export const fetchNewsByCategory = async (category) => {
             }
         })
         return response.data.articles
-    }catch(error){
+    }catch(error: any){
         console.error('API Error:', error.response?.data || error.message);
         throw new Error('Kategori haberleri yüklenirken hata oluştu');
     }
 }
 
-export const searchNews = async (query) => {
+export const searchNews = async (query: string) => {
     try{
-        const response = await newsApi.get('/everything', {
+        const response: { data: NewsApiResponse } = await newsApi.get('/everything', {
         params: {
             q: query,
             pageSize: 20,
@@ -53,7 +53,7 @@ export const searchNews = async (query) => {
         }
     })
     return response.data.articles
-    }catch(error){
+    }catch(error: any){
         console.error('API Error:', error.response?.data || error.message);
         throw new Error('Arama sırasında hata oluştu');
     }

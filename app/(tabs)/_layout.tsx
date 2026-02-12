@@ -20,7 +20,7 @@ export default function TabLayout() {
         options={{
           title: 'Ana Sayfa',
           headerTitle: 'Top Headlines',
-          tabBarIcon: ({ color, size }) => (
+          tabBarIcon: ({ color, size }: { color: string; size: number }) => (
             <Ionicons name="home" size={size} color={color} />
           ),
         }}
@@ -29,7 +29,7 @@ export default function TabLayout() {
         name="categories"
         options={{
           title: 'Kategoriler',
-          tabBarIcon: ({ color, size }) => (
+          tabBarIcon: ({ color, size }: { color: string; size: number }) => (
             <Ionicons name="grid" size={size} color={color} />
           ),
         }}
@@ -38,7 +38,7 @@ export default function TabLayout() {
         name="search"
         options={{
           title: 'Ara',
-          tabBarIcon: ({ color, size }) => (
+          tabBarIcon: ({ color, size }: { color: string; size: number }) => (
             <Ionicons name="search" size={size} color={color} />
           ),
         }}
@@ -47,7 +47,7 @@ export default function TabLayout() {
         name="saved"
         options={{
           title: 'Kaydedilenler',
-          tabBarIcon: ({ color, size }) => (
+          tabBarIcon: ({ color, size }: { color: string; size: number }) => (
             <Ionicons name="bookmark" size={size} color={color} />
           ),
         }}

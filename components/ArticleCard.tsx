@@ -1,16 +1,7 @@
 import { View, Text, Image, Pressable } from 'react-native';
-
-export default function ArticleCard({ article, onPress }) {
-
-  // Tarih formatla
-  const formatDate = (dateString) => {
-    const date = new Date(dateString);
-    return date.toLocaleDateString('tr-TR', {
-      day: 'numeric',
-      month: 'short',
-      year: 'numeric',
-    });
-  };
+import { Article } from "../types/news";
+import { formatDate } from '../utils/date';
+export default function ArticleCard({ article, onPress }: { article: Article; onPress: () => void }) {
 
   return (
     <Pressable 
