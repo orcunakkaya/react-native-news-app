@@ -10,7 +10,7 @@ export default function Layout() {
     <QueryClientProvider client={queryClient}>
       <Stack
         screenOptions={{
-          headerShown: false, // Header'ı gizle
+          headerShown: false
         }}
       />
     </QueryClientProvider>
