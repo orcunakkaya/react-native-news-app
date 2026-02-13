@@ -1,7 +1,11 @@
+import Ionicons from '@expo/vector-icons/Ionicons';
+
+type IconName = keyof typeof Ionicons.glyphMap;
+
 export interface Category {
   id: string;
   name: string;
-  icon: string;
+  icon: IconName;
   color: string;
 }
 

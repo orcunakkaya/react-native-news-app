@@ -8,17 +8,14 @@ interface CategoryCardProps {
 }
 
 export default function CategoryCard({ category, onPress }: CategoryCardProps) {
-
   return (
-    <Pressable
-      onPress={onPress}
-      className="m-2 rounded-2xl overflow-hidden shadow-lg bg-slate-200"
-    >
-        {/* Kategori Adı */}
-         <Text className="text-black font-bold text-md p-3">
-          {category.name}
-        </Text>
-     
+    <Pressable onPress={onPress} className="m-1 overflow-hidden rounded-2xl bg-slate-200 shadow-lg">
+      <View className="aspect-square flex-col items-center gap-4 p-4">
+        <View className={`rounded-full p-3 ${category.color}`}>
+          <Ionicons name={category.icon} size={24} color="#fff" />
+        </View>
+        <Text className="text-lg font-semibold text-gray-900">{category.name}</Text>
+      </View>
     </Pressable>
   );
 }

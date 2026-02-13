@@ -1,4 +1,4 @@
-import { View, Text, FlatList, Pressable } from 'react-native';
+import { View, Text, FlatList, Pressable, ScrollView } from 'react-native';
 import { useRouter } from 'expo-router';
 import { CATEGORIES } from '../../constants/categories';
 import CategoryCard from '../../components/CategoryCard';
@@ -22,6 +22,10 @@ export default function Categories() {
   return (
   
         <View className="flex-1 bg-gray-50">
+            <ScrollView
+    showsVerticalScrollIndicator={false}
+    contentContainerStyle={{ paddingBottom: 40 }}
+  >
         {/* Header Açıklama */}
         <View className="bg-white px-5 py-6 border-b border-gray-100 gap-2">
             <Text className="text-2xl font-bold text-gray-900">
@@ -61,7 +65,7 @@ export default function Categories() {
         </View>
         </View>
 
-        <View className="flex-row flex-wrap p-4">
+        <View className="flex-row flex-wrap p-4 items-center justify-center">
             {CATEGORIES.map((category) => (
                 <CategoryCard
                     key={category.id}
@@ -70,6 +74,20 @@ export default function Categories() {
                 />
             ))} 
         </View>
+        {/* <FlatList
+            data={CATEGORIES}
+            numColumns={2}
+            keyExtractor={(item) => item.id}
+            contentContainerStyle={{ padding: 8 }}
+            showsVerticalScrollIndicator={false}
+            renderItem={({ item }) => (
+            <CategoryCard
+                category={item}
+                onPress={() => handleCategoryPress(item.id, item.name)}
+            />
+            )}
+        /> */}
+        </ScrollView>
         </View>
   
   );
