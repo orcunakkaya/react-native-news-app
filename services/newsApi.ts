@@ -59,6 +59,7 @@ export const searchNews = async (query: string) => {
     }
 }
 
+// yayıncıları getir
 export const fetchPublisher = async (country: string = 'us') => {
     try{
         const response: { data: PublisherResponse } = await newsApi.get('/top-headlines/sources', {
@@ -67,7 +68,6 @@ export const fetchPublisher = async (country: string = 'us') => {
             language: 'en',
         }
     })
-    console.log('Publisher API Response:', response); // API yanıtını kontrol et
     return response.data.sources
     }catch(error: any){
         console.error('API Error:', error.response?.data || error.message);

@@ -23,9 +23,9 @@ export default function Categories() {
   
         <View className="flex-1 bg-gray-50">
             <ScrollView
-    showsVerticalScrollIndicator={false}
-    contentContainerStyle={{ paddingBottom: 40 }}
-  >
+                showsVerticalScrollIndicator={false}
+                contentContainerStyle={{ paddingBottom: 40 }}
+            >
         {/* Header Açıklama */}
         <View className="bg-white px-5 py-6 border-b border-gray-100 gap-2">
             <Text className="text-2xl font-bold text-gray-900">
