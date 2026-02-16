@@ -1,12 +1,13 @@
 import { View, Text, Image, Pressable } from 'react-native';
 import { Article } from "../types/news";
 import { formatDate } from '../utils/date';
+
 export default function ArticleCard({ article, onPress }: { article: Article; onPress: () => void }) {
 
   return (
     <Pressable 
       onPress={onPress}
-      className="bg-white mb-4 rounded-xl overflow-hidden shadow-sm border border-gray-100 active:opacity-70"
+      className="mb-4 overflow-hidden bg-white border border-gray-100 shadow-sm rounded-xl active:opacity-70"
     >
       {/* Resim */}
       <Image
@@ -18,7 +19,7 @@ export default function ArticleCard({ article, onPress }: { article: Article; on
       {/* İçerik */}
       <View className="p-4">
         {/* Kaynak ve Tarih */}
-        <View className="flex-row justify-between items-center mb-2">
+        <View className="flex-row items-center justify-between mb-2">
           <Text className="text-xs font-semibold text-blue-600">
             {article.source.name}
           </Text>
@@ -28,7 +29,7 @@ export default function ArticleCard({ article, onPress }: { article: Article; on
         </View>
 
         {/* Başlık */}
-        <Text className="text-base font-bold text-gray-900 mb-2" numberOfLines={3}>
+        <Text className="mb-2 text-base font-bold text-gray-900" numberOfLines={3}>
           {article.title}
         </Text>
 

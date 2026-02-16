@@ -1,17 +1,16 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useQueryClient } from '@tanstack/react-query';
+import { useQueryClient, useQuery } from '@tanstack/react-query';
 import { Article } from '@/types/news';
+import { getSavedArticles } from '../services/storage';
+
 const SAVED_QUERY_KEY = 'SAVED_ARTICLES';
 
-export const getSavedArticles = async () => {
-  const data = await AsyncStorage.getItem(SAVED_QUERY_KEY);
-  return data ? JSON.parse(data) : [];
-};
-
-export const saveArticles = async (articles: Article[]) => {
-  await AsyncStorage.setItem(SAVED_QUERY_KEY, JSON.stringify(articles));
-};
-
+export function useSavedArticles() {
+  return useQuery({
+    queryKey: [SAVED_QUERY_KEY],
+    queryFn: getSavedArticles,
+  });
+}
 
 export function useSaveActions() {
   const queryClient = useQueryClient();
@@ -34,14 +33,8 @@ export function useSaveActions() {
       JSON.stringify(updated)
     );
 
-    queryClient.setQueryData([SAVED_QUERY_KEY], updated);
+    queryClient.setQueryData([SAVED_QUERY_KEY], () => [...updated]);
   };
-
-//   const isSaved = (url: string) => {
-//     const current = queryClient.getQueryData<Article[]>([SAVED_QUERY_KEY]) || [];
-
-//     return current.some(a => a.url === url);
-//   };
 
   return { toggleSave };
 }
