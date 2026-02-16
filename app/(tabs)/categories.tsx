@@ -19,6 +19,16 @@ export default function Categories() {
     });
   };
 
+  const handlePublisherPress = (id: string, name: string) => {
+    router.push({
+      pathname: '/publisher/[id]',
+      params: {
+        id: id,
+        name: name,
+      },
+    });
+  };
+
   return (
   
         <View className="flex-1 bg-gray-50">
@@ -54,7 +64,7 @@ export default function Categories() {
                     borderRadius: 20,
                     marginRight: 12,
                     }}
-                    onPress={() => handleCategoryPress(item.id, item.name)}
+                    onPress={() => handlePublisherPress(item.id, item.name)}
                 >
                     <Text style={{ fontWeight: '600' }}>
                     {item.name}
@@ -74,19 +84,6 @@ export default function Categories() {
                 />
             ))} 
         </View>
-        {/* <FlatList
-            data={CATEGORIES}
-            numColumns={2}
-            keyExtractor={(item) => item.id}
-            contentContainerStyle={{ padding: 8 }}
-            showsVerticalScrollIndicator={false}
-            renderItem={({ item }) => (
-            <CategoryCard
-                category={item}
-                onPress={() => handleCategoryPress(item.id, item.name)}
-            />
-            )}
-        /> */}
         </ScrollView>
         </View>
   

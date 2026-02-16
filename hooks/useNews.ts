@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { fetchNewsByCategory, fetchTopHeadLines, searchNews, fetchPublisher } from "../services/newsApi";
+import { fetchNewsByCategory, fetchTopHeadLines, searchNews, fetchPublisher, fetchNewsByPublisher } from "../services/newsApi";
 import { Article, Publisher } from "../types/news";
 
 export const useTopHeadlines = (country: string = 'us') => {
@@ -28,8 +28,17 @@ export const useSearchNews = (query: string) => {
 
 export const usePublisher = (country: string = 'us') => {
     return useQuery<Publisher[]>({
-        queryKey: ['news', 'publisher', country],
+        queryKey: ['news', 'sources', country],
         queryFn: () => fetchPublisher(country),
         staleTime: 1000 * 60 * 60, // 1 saat
     })
 }
+
+export const useNewsByPublisher = (sourceId: string) => {
+  return useQuery({
+    queryKey: ['news', 'publisher', sourceId],
+    queryFn: () => fetchNewsByPublisher({ sourceId }),
+    enabled: !!sourceId,
+    staleTime: 1000 * 60 * 5,
+  });
+};

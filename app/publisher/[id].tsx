@@ -6,20 +6,19 @@ import {
   RefreshControl,
 } from 'react-native';
 import { useLocalSearchParams, useRouter, Stack } from 'expo-router';
-import { useNewsByCategory } from '../../hooks/useNews';
+import { useNewsByPublisher } from '../../hooks/useNews';
 import ArticleCard from '../../components/ArticleCard';
 import { Ionicons } from '@expo/vector-icons';
-import { useState, useLayoutEffect } from 'react';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { useState } from 'react';
 import { Article } from '../../types/news';
 
-export default function CategoriesScreen() {
+export default function PublisherScreen() {
     const router = useRouter();
     const params = useLocalSearchParams();
     const categoryId = params.id as string;
     const categoryName = params.name as string;
 
-    const { data, isLoading, isError, error, refetch } = useNewsByCategory(categoryId);
+    const { data, isLoading, isError, error, refetch } = useNewsByPublisher(categoryId);
     const [refreshing, setRefreshing] = useState(false);
 
     const onRefresh = async () => {

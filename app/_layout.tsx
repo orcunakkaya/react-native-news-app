@@ -33,6 +33,16 @@ export default function Layout() {
             }}
           />
 
+          {/* Publisher Detay - YENİ */}
+          <Stack.Screen
+            name="publisher/[id]"
+            options={{
+              headerShown: true,
+              headerTitle: '',
+              headerBackTitle: 'Geri',
+            }}
+          />
+
           {/* Article Detay - Header yok (custom header var) */}
           <Stack.Screen
             name="article/[id]"

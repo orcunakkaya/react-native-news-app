@@ -74,3 +74,20 @@ export const fetchPublisher = async (country: string = 'us') => {
         throw new Error('Yayıncı bilgileri yüklenirken hata oluştu');
     }
 }
+
+// PUBLISHER'A GÖRE HABERLER - YENİ
+export const fetchNewsByPublisher = async ({ pageParam = 1, sourceId }: { pageParam?: number; sourceId: string }) => {
+  try {
+    const response = await newsApi.get('/everything', {
+      params: {
+        sources: sourceId,
+        pageSize: 10,
+        sortBy: 'publishedAt',
+      },
+    });
+      return response.data.articles;
+  } catch (error: any) {
+    console.error('API Error:', error.response?.data || error.message);
+    throw new Error('Publisher haberleri yüklenirken hata oluştu');
+  }
+};
