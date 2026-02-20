@@ -4,7 +4,7 @@ import { CATEGORIES } from '../../constants/categories';
 import CategoryCard from '../../components/CategoryCard';
 import { Ionicons } from '@expo/vector-icons';
 import { usePublisher } from '../../hooks/useNews';
-
+import Loading from '../../components/Loading';
 export default function Categories() {
   const router = useRouter();
   const { data: publishers, isLoading, isError, error } = usePublisher("us");
@@ -29,6 +29,12 @@ export default function Categories() {
     });
   };
 
+  if (isLoading) {
+      return (
+        <Loading text="Kategoriler yükleniyor..." />
+      );
+    }
+
   return (
   
         <View className="flex-1 bg-gray-50">
@@ -37,7 +43,7 @@ export default function Categories() {
                 contentContainerStyle={{ paddingBottom: 40 }}
             >
         {/* Header Açıklama */}
-        <View className="bg-white px-5 py-6 border-b border-gray-100 gap-2">
+        <View className="gap-2 px-5 py-6 bg-white border-b border-gray-100">
             <Text className="text-2xl font-bold text-gray-900">
                 Kategoriler
             </Text>
@@ -46,7 +52,7 @@ export default function Categories() {
             </Text>
         </View>
 
-        <View className='p-6 bg-white gap-2'>
+        <View className='gap-2 p-6 bg-white'>
             <Text className='text-xl font-bold '>Publishers</Text>
             <View className="flex-row flex-wrap">
             <FlatList
@@ -75,7 +81,7 @@ export default function Categories() {
         </View>
         </View>
 
-        <View className="flex-row flex-wrap p-4 items-center justify-center">
+        <View className="flex-row flex-wrap items-center justify-center p-4">
             {CATEGORIES.map((category) => (
                 <CategoryCard
                     key={category.id}

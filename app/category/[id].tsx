@@ -12,7 +12,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { useState, useLayoutEffect } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Article } from '../../types/news';
-
+import Loading from '../../components/Loading';
 export default function CategoriesScreen() {
     const router = useRouter();
     const params = useLocalSearchParams();
@@ -31,18 +31,12 @@ export default function CategoriesScreen() {
     if (isLoading) {
     return (
       <>
-        {/* Stack Screen ile başlık ayarla */}
         <Stack.Screen 
           options={{ 
             headerTitle: categoryName,
           }} 
         />
-        <View className="flex-1 items-center justify-center bg-gray-50">
-          <ActivityIndicator size="large" color="#3b82f6" />
-          <Text className="mt-4 text-gray-600 font-medium">
-            Haberler yükleniyor...
-          </Text>
-        </View>
+        <Loading text="Haberler yükleniyor..." />
       </>
     );
   }
@@ -55,12 +49,12 @@ export default function CategoriesScreen() {
             headerTitle: categoryName,
           }} 
         />
-        <View className="flex-1 items-center justify-center bg-gray-50 px-4">
+        <View className="items-center justify-center flex-1 px-4 bg-gray-50">
           <Ionicons name="alert-circle-outline" size={64} color="#ef4444" />
-          <Text className="text-red-500 text-lg font-bold mb-2 mt-4">
+          <Text className="mt-4 mb-2 text-lg font-bold text-red-500">
             Hata Oluştu!
           </Text>
-          <Text className="text-gray-600 text-center">
+          <Text className="text-center text-gray-600">
             {error instanceof Error ? error.message : 'Bir hata oluştu'}
           </Text>
         </View>
@@ -77,12 +71,12 @@ export default function CategoriesScreen() {
             headerTitle: categoryName,
           }} 
         />
-        <View className="flex-1 items-center justify-center bg-gray-50 px-4">
+        <View className="items-center justify-center flex-1 px-4 bg-gray-50">
           <Ionicons name="newspaper-outline" size={64} color="#9ca3af" />
-          <Text className="text-gray-700 text-lg font-bold mt-4">
+          <Text className="mt-4 text-lg font-bold text-gray-700">
             Haber Bulunamadı
           </Text>
-          <Text className="text-gray-500 text-center mt-2">
+          <Text className="mt-2 text-center text-gray-500">
             Bu kategoride şu anda haber bulunmuyor.
           </Text>
         </View>

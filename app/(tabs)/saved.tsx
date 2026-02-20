@@ -11,22 +11,18 @@ import {
 } from '../../hooks/useSaveActions';
 import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
+import Loading from '../../components/Loading';
 
 export default function SavedScreen() {
-  const { data: savedArticles = [], isLoading } =
-    useSavedArticles();
+  const { data: savedArticles = [], isLoading } = useSavedArticles();
 
   const { toggleSave } = useSaveActions();
 
   const router = useRouter();
 
-  /* ---------- LOADING ---------- */
-
   if (isLoading) {
     return (
-      <View className="items-center justify-center flex-1">
-        <Text>Yükleniyor...</Text>
-      </View>
+      <Loading text="Kaydedilen haberler yükleniyor..." />
     );
   }
 
@@ -51,8 +47,6 @@ export default function SavedScreen() {
     );
   }
 
-  /* ---------- LIST ---------- */
-
   return (
     <View className="flex-1 bg-gray-50">
       <FlatList
@@ -72,8 +66,6 @@ export default function SavedScreen() {
                 }
               });
             }}
-              // onRemove={() => toggleSave(item)}
-              // showRemoveButton
             />
             <Pressable
               onPress={() => toggleSave(item)}
@@ -91,10 +83,3 @@ export default function SavedScreen() {
     </View>
   );
 }
-
-{/* <Pressable
-    onPress={shareArticle}
-    className="items-center justify-center w-10 h-10 rounded-full shadow-lg bg-white/90 active:opacity-70"
-  >
-    <Ionicons name="share-outline" size={22} color="#1f2937" />
-  </Pressable> */}
