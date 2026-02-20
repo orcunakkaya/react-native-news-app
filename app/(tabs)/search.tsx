@@ -1,4 +1,4 @@
-import { View, FlatList, ActivityIndicator, Text, Keyboard } from 'react-native';
+import { View, FlatList, Text, Keyboard } from 'react-native';
 import { useState } from 'react';
 import { useRouter } from 'expo-router';
 import { useSearchNews } from '../../hooks/useNews';
@@ -6,6 +6,7 @@ import { useDebounce } from '../../hooks/useDebounce';
 import SearchBar from '../../components/SearchBar';
 import ArticleCard from '../../components/ArticleCard';
 import EmptyState from '../../components/EmptyState';
+import Loading from '../../components/Loading';
 import { Article } from '@/types/news';
 
 export default function SearchScreen() {
@@ -46,12 +47,7 @@ export default function SearchScreen() {
         />
       ) : isLoading ? (
         // Loading State
-        <View className="items-center justify-center flex-1">
-          <ActivityIndicator size="large" color="#3b82f6" />
-          <Text className="mt-4 font-medium text-gray-600">
-            {debouncedQuery} aranıyor...
-          </Text>
-        </View>
+        <Loading text={`"${debouncedQuery}" aranıyor...`} />
       ) : isError ? (
         // Error State
         <EmptyState
@@ -69,7 +65,6 @@ export default function SearchScreen() {
       ) : (
         // Results
         <View className="flex-1">
-          {/* Results Header */}
           <View className="px-4 py-3 bg-white border-b border-gray-100">
             <Text className="text-sm text-gray-600">
               <Text className="font-bold text-gray-900">{articles.length}</Text> sonuç

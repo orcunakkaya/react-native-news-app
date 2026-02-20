@@ -2,17 +2,17 @@ import {
   View,
   Text,
   FlatList,
-  ActivityIndicator,
   RefreshControl,
 } from 'react-native';
 import { useLocalSearchParams, useRouter, Stack } from 'expo-router';
 import { useNewsByCategory } from '../../hooks/useNews';
 import ArticleCard from '../../components/ArticleCard';
 import { Ionicons } from '@expo/vector-icons';
-import { useState, useLayoutEffect } from 'react';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { useState } from 'react';
 import { Article } from '../../types/news';
 import Loading from '../../components/Loading';
+import EmptyState from '../../components/EmptyState';
+
 export default function CategoriesScreen() {
     const router = useRouter();
     const params = useLocalSearchParams();
@@ -62,7 +62,6 @@ export default function CategoriesScreen() {
     );
   }
 
-  // Empty
   if (data?.length === 0) {
     return (
       <>
@@ -71,15 +70,11 @@ export default function CategoriesScreen() {
             headerTitle: categoryName,
           }} 
         />
-        <View className="items-center justify-center flex-1 px-4 bg-gray-50">
-          <Ionicons name="newspaper-outline" size={64} color="#9ca3af" />
-          <Text className="mt-4 text-lg font-bold text-gray-700">
-            Haber Bulunamadı
-          </Text>
-          <Text className="mt-2 text-center text-gray-500">
-            Bu kategoride şu anda haber bulunmuyor.
-          </Text>
-        </View>
+        <EmptyState
+          icon="document-text-outline"
+          title="Haber Bulunamadı"
+          description="Bu kategoride gösterilecek haber bulunamadı."
+        />
       </>
     );
   }

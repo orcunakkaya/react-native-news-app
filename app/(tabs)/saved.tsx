@@ -12,6 +12,7 @@ import {
 import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 import Loading from '../../components/Loading';
+import EmptyState from '../../components/EmptyState';
 
 export default function SavedScreen() {
   const { data: savedArticles = [], isLoading } = useSavedArticles();
@@ -26,24 +27,9 @@ export default function SavedScreen() {
     );
   }
 
-  /* ---------- EMPTY STATE ---------- */
-
   if (savedArticles.length === 0) {
     return (
-      <View className="items-center justify-center flex-1 px-6">
-        <Ionicons
-          name="bookmark-outline"
-          size={64}
-          color="#9ca3af"
-        />
-        <Text className="mt-4 text-lg font-bold text-gray-700">
-          Henüz kaydedilen haber yok
-        </Text>
-        <Text className="mt-2 text-center text-gray-500">
-          Haberleri kaydetmek için detay sayfasındaki
-          bookmark ikonunu kullan.
-        </Text>
-      </View>
+      <EmptyState icon="bookmark-outline" title="Kaydedilen Haber Yok" description="Henüz hiçbir haber kaydedilmedi." />
     );
   }
 

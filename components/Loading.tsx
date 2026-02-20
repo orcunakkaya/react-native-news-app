@@ -7,7 +7,7 @@ interface LoadingProps {
 export default function Loading({ text }: LoadingProps) {
   return (
     <View className="absolute inset-0 items-center justify-center bg-black/10">
-      <ActivityIndicator size="large" />
+      <ActivityIndicator size="large"  />
       {text && <Text className="mt-3">{text}</Text>}
     </View>
   );
