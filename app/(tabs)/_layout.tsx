@@ -19,7 +19,7 @@ export default function TabLayout() {
         name="index"
         options={{
           title: 'Ana Sayfa',
-          headerTitle: 'Top Headlines',
+          headerTitle: 'Popüler Haberler',
           tabBarIcon: ({ color, size }: { color: string; size: number }) => (
             <Ionicons name="home" size={size} color={color} />
           ),

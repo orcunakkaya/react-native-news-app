@@ -53,7 +53,7 @@ export default function Categories() {
         </View>
 
         <View className='gap-2 p-6 bg-white'>
-            <Text className='text-xl font-bold '>Publishers</Text>
+            <Text className='text-xl font-bold '>Yayıncılar</Text>
             <View className="flex-row flex-wrap">
             <FlatList
                 data={publishers}
